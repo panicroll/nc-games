@@ -29,7 +29,6 @@ function Reviews() {
                     <h2>{review.title}</h2>
                     <p>{review.category}</p>
                     <p>{review.owner}</p>
-                    <p>{review.review_body}</p>
                     <p>Votes: {review.votes}</p>
                     <p>Comments: {review.comment_count}</p>
                 </li>
