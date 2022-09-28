@@ -12,6 +12,7 @@ function App() {
       <Routes>
         {/* <Route path="/" element={<Home />} /> */}
         <Route path="/" element={<Reviews />} />
+        <Route path="/reviews/categories/:category" element={<Reviews />} />
       </Routes>
     </div>
   );
