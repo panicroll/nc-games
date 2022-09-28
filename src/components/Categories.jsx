@@ -20,7 +20,6 @@ function Categories() {
       <button onClick={() => setIsVisible(!isVisible)} className="categories_button">
         Categories
       </button>
-      {console.log(isVisible)}
 
       <div className={isVisible ? "category_list" : "category_list_hidden"}>
         {categories.map((category) => {
