@@ -14,7 +14,6 @@ function Reviews() {
     if (category) {
       getReviewsByCategory(category)
         .then(({ reviews }) => {
-          console.log(reviews)
           setReviews(reviews);
           setLoading(false);
         });
