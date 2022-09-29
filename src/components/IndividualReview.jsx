@@ -2,16 +2,16 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import "./IndividualReview.css";
+import { getIndividualReview } from "../utils/api";
 
 function IndividualReview() {
   const { review_id } = useParams();
   const [currentReview, setCurrentReview] = useState({});
 
   useEffect(() => {
-    axios
-      .get(`https://nc-games-collection.herokuapp.com/api/reviews/${review_id}`)
-      .then(({ data }) => {
-        setCurrentReview(data.review);
+    getIndividualReview(review_id)
+      .then(({ review }) => {
+        setCurrentReview(review);
       });
   }, [review_id]);
 

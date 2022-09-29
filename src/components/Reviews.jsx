@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams, useSearchParams } from "react-router-dom";
-import axios from "axios";
+import {getReviews, getReviewsByCategory} from "../utils/api";
 import "./Reviews.css";
 import Categories from "./Categories";
 
@@ -12,19 +12,16 @@ function Reviews() {
   useEffect(() => {
     setLoading(true);
     if (category) {
-      axios
-        .get(
-          `https://nc-games-collection.herokuapp.com/api/reviews?category=${category}`
-        )
-        .then(({ data }) => {
-          setReviews(data.reviews);
+      getReviewsByCategory(category)
+        .then(({ reviews }) => {
+          console.log(reviews)
+          setReviews(reviews);
           setLoading(false);
         });
     } else {
-      axios
-        .get("https://nc-games-collection.herokuapp.com/api/reviews")
-        .then(({ data }) => {
-          setReviews(data.reviews);
+      getReviews()
+        .then(({ reviews }) => {
+          setReviews(reviews);
           setLoading(false);
         });
     }
