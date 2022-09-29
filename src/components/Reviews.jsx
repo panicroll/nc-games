@@ -7,10 +7,9 @@ import Categories from "./Categories";
 function Reviews() {
   const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState(true);
-  const {category} = useParams();
+  const { category } = useParams();
 
   useEffect(() => {
-    
     setLoading(true);
     if (category) {
       axios
@@ -36,15 +35,16 @@ function Reviews() {
   }
 
   return (
-    
     <ul className="reviews_list">
-        <Categories />
+      <Categories />
       {reviews.map((review) => {
         return (
           <li className="review_card" key={review.review_id}>
-            <h2>{review.title}</h2>
-            <p>{review.category}</p>
-            <p>{review.owner}</p>
+            <Link to={`/reviews/${review.review_id}`}>
+              <h2>{review.title}</h2>
+            </Link>
+            <p>By: {review.owner}</p>
+            <p>Category: {review.category}</p>
             <p>Votes: {review.votes}</p>
             <p>Comments: {review.comment_count}</p>
           </li>
