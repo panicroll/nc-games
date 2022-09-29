@@ -2,16 +2,16 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import "./Categories.css";
+import { getCategories } from "../utils/api";
 
 function Categories() {
   const [categories, setCategories] = useState([]);
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    axios
-      .get("https://nc-games-collection.herokuapp.com/api/categories")
-      .then(({ data }) => {
-        setCategories(data.categories);
+    getCategories()
+      .then(({ categories }) => {
+        setCategories(categories);
       });
   }, []);
 
