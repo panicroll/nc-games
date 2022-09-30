@@ -3,7 +3,7 @@ import { patchVotes } from "../utils/api";
 
 function Votes({ review_id, votes }) {
   const [currentVotes, setCurrentVotes] = useState(votes);
-  const [hasVoted, setHasVoted] = useState(false);
+  const [voteCount, setVoteCount] = useState(0);
   const [alreadyVoted, setAlreadyVoted] = useState("");
   const [votingError, setVotingError] = useState(false);
 
@@ -11,15 +11,33 @@ function Votes({ review_id, votes }) {
     setCurrentVotes(votes);
   }, [votes]);
 
-  function updateVote(num) {
-    if (!hasVoted) {
-      setCurrentVotes((currentVotes) => (currentVotes += num));
-      patchVotes(review_id, num)
+  function upvote() {
+    if (voteCount < 1) {
+      setAlreadyVoted("");
+      setCurrentVotes((currentVotes) => (currentVotes += 1));
+      patchVotes(review_id, 1)
         .then(() => {
-          setHasVoted(true);
+          setVoteCount((voteCount) => (voteCount += 1));
         })
         .catch((err) => {
-          setCurrentVotes((currentVotes) => (currentVotes -= num));
+          setCurrentVotes((currentVotes) => (currentVotes -= 1));
+          setVotingError(true);
+        });
+    } else {
+      setAlreadyVoted("You have already voted on this review.");
+    }
+  }
+
+  function downvote() {
+    if (voteCount > -1) {
+      setAlreadyVoted("");
+      setCurrentVotes((currentVotes) => (currentVotes -= 1));
+      patchVotes(review_id, -1)
+        .then(() => {
+          setVoteCount((voteCount) => (voteCount -= 1));
+        })
+        .catch((err) => {
+          setCurrentVotes((currentVotes) => (currentVotes += 1));
           setVotingError(true);
         });
     } else {
@@ -30,11 +48,11 @@ function Votes({ review_id, votes }) {
   return (
     <div className="votes_wrapper">
       <div className="votes">
-        <button onClick={() => updateVote(1)} className="upvote_button">
+        <button onClick={() => upvote()} className="upvote_button">
           Upvote
         </button>
         <p>Votes: {currentVotes}</p>
-        <button onClick={() => updateVote(-1)} className="downvote_button">
+        <button onClick={() => downvote()} className="downvote_button">
           Downvote
         </button>
       </div>
