@@ -35,3 +35,11 @@ export function getIndividualReview(review_id) {
         return data;
     });
 }
+
+export function patchVotes(review_id, votes) {
+    return gamesApi
+    .patch(`reviews/${review_id}`, {inc_votes: votes})
+    .then(({data}) => {
+        return data.review.votes;
+    })
+}

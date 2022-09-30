@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import axios from "axios";
 import "./IndividualReview.css";
-import { getIndividualReview } from "../utils/api";
+import { getIndividualReview, patchVotes } from "../utils/api";
+import Votes from "./Votes";
 
-function IndividualReview() {
+function IndividualReview({review}) {
   const { review_id } = useParams();
   const [currentReview, setCurrentReview] = useState({});
 
@@ -29,7 +29,7 @@ function IndividualReview() {
       </div>
 
       <div className="review_interaction">
-        <p>Votes: {currentReview.votes}</p>
+        <Votes review_id={currentReview.review_id} votes={currentReview.votes} />
         <p>Comments: {currentReview.comment_count}</p>
       </div>
     </div>
