@@ -4,7 +4,8 @@ import { patchVotes } from "../utils/api";
 function Votes({ review_id, votes }) {
   const [currentVotes, setCurrentVotes] = useState(votes);
   const [hasVoted, setHasVoted] = useState(false);
-  const [votingError, setVotingError] = useState("");
+  const [alreadyVoted, setAlreadyVoted] = useState("");
+  const [votingError, setVotingError] = useState(false);
 
   useEffect(() => {
     setCurrentVotes(votes);
@@ -13,11 +14,16 @@ function Votes({ review_id, votes }) {
   function updateVote(num) {
     if (!hasVoted) {
       setCurrentVotes((currentVotes) => (currentVotes += num));
-      patchVotes(review_id, num).then(() => {
-        setHasVoted(true);
-      });
+      patchVotes(review_id, num)
+        .then(() => {
+          setHasVoted(true);
+        })
+        .catch((err) => {
+          setCurrentVotes((currentVotes) => (currentVotes -= num));
+          setVotingError(true);
+        });
     } else {
-      setVotingError("You have already voted on this review.");
+      setAlreadyVoted("You have already voted on this review.");
     }
   }
 
@@ -32,7 +38,10 @@ function Votes({ review_id, votes }) {
           Downvote
         </button>
       </div>
-      <div className="error_message">{votingError}</div>
+      <div className="error_message">{alreadyVoted}</div>
+      <div className="error_message">
+        {votingError ? <p>Sorry, there was a voting error.</p> : null}
+      </div>
     </div>
   );
 }
