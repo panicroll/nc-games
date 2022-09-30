@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import "./IndividualReview.css";
 import { getIndividualReview, patchVotes } from "../utils/api";
 import Votes from "./Votes";
+import Comments from "./Comments";
 
 function IndividualReview({review}) {
   const { review_id } = useParams();
@@ -16,6 +17,7 @@ function IndividualReview({review}) {
   }, [review_id]);
 
   return (
+    <div className="review_page">
     <div className="full_review">
       <h2>{currentReview.title}</h2>
       <p>By: {currentReview.owner}</p>
@@ -30,8 +32,9 @@ function IndividualReview({review}) {
 
       <div className="review_interaction">
         <Votes review_id={currentReview.review_id} votes={currentReview.votes} />
-        <p>Comments: {currentReview.comment_count}</p>
       </div>
+    </div>
+    <Comments review_id={currentReview.review_id}/>
     </div>
   );
 }

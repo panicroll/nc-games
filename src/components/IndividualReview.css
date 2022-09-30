@@ -48,3 +48,28 @@
 .error_message {
     color: red;
 }
+
+/* COMMENTS */
+
+.comment_card {
+    width: 80%;
+    border-style: solid;
+    border-width: 2px;
+    margin: auto;
+    margin-bottom: 10px;
+    padding: 0.5em;
+    text-align: left;
+}
+
+.comments_button {
+    background-color: rgba(228, 228, 228, 0.726);
+    padding: 16px;
+    margin: 10px;
+    border: none;
+    border-radius: 10%;
+    cursor: pointer;
+}
+
+.comments_list_hidden {
+    display: none;
+}

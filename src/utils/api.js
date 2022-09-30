@@ -43,3 +43,11 @@ export function patchVotes(review_id, votes) {
         return data.review.votes;
     })
 }
+
+export function getComments(review_id) {
+    return gamesApi
+    .get(`/reviews/${review_id}/comments`)
+    .then(({data}) => {
+        return data;
+    })
+}
