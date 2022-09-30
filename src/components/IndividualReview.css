@@ -1,50 +1,75 @@
 .full_review {
-    width: 80%;
-    align-items: center;
-    justify-content: space-around;
-    border-style: solid;
-    border-width: 2px;
-    margin: auto;
-    padding: 0.5em;
+  width: 80%;
+  align-items: center;
+  justify-content: space-around;
+  border-style: solid;
+  border-width: 2px;
+  margin: auto;
+  padding: 0.5em;
 }
 
 .review_img {
-    width: 300px;
+  width: 300px;
 }
 
 .review_body {
-    text-align: left;
+  text-align: left;
 }
 
 /* VOTES */
 
 .votes {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    margin: auto;
-    padding: 0.5em;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  padding: 0.5em;
 }
 
 .upvote_button {
-    background-color: rgba(228, 228, 228, 0.726);
-    padding: 16px;
-    margin: 10px;
-    border: none;
-    border-radius: 10%;
-    cursor: pointer;
+  background-color: rgba(228, 228, 228, 0.726);
+  padding: 16px;
+  margin: 10px;
+  border: none;
+  border-radius: 10%;
+  cursor: pointer;
 }
 
 .downvote_button {
-    background-color: rgba(228, 228, 228, 0.726);
-    padding: 16px;
-    margin: 10px;
-    border: none;
-    border-radius: 10%;
-    cursor: pointer;
+  background-color: rgba(228, 228, 228, 0.726);
+  padding: 16px;
+  margin: 10px;
+  border: none;
+  border-radius: 10%;
+  cursor: pointer;
 }
 
 .error_message {
-    color: red;
+  color: red;
+}
+
+/* COMMENTS */
+
+.comment_card {
+  width: 80%;
+  border-style: solid;
+  border-width: 2px;
+  margin: auto;
+  margin-bottom: 10px;
+  padding: 0.5em;
+  text-align: left;
+}
+
+.comments_button {
+  background-color: rgba(228, 228, 228, 0.726);
+  padding: 16px;
+  margin: 10px;
+  border: none;
+  border-radius: 10%;
+  cursor: pointer;
+}
+
+.comments_list_hidden {
+  display: none;
 }
